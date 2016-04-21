@@ -1,4 +1,4 @@
-# AngularJS-data-binding-in-MVC
+# Data-binding-in-MVC with AngularJS
 
 This is the application using Sql Server as database.
 AngularJs for data binding with mvc view.
