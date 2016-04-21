@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Employee";
+}
+
+<html ng-app="myApp">
+<head>
+    <title></title>
+    <script src="~/Content/angular1.2.18.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Content/Module.js"></script>
+    <script src="~/Content/Service.js"></script>
+    <script src="~/Content/Controller.js"></script>
+    <script src="~/Content/dirPagination.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            border: none;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div ng-controller="myCntrl">
+
+        <hr style="width: 550px;" />
+
+        <form class="form-inline">
+            <div class="form-group">
+                <b>Search : </b>
+                <input type="text" placeholder="Search" class="form-control" ng-model="search" />
+            </div>
+        </form>
+        <br />
+        <table cellpadding="12" class="table table-bordered table-hover table-striped">
+            <tr class="success">
+                <th style="cursor: pointer;" ng-click="sort('id')"><b>Employee ID</b> </th>
+                <th style="cursor: pointer;" ng-click="sort('Name')"><b>Name</b></th>
+                <th style="cursor: pointer; width: 100px;" ng-click="sort('DOB')"><b>DOB</b></th>
+                <th style="cursor: pointer;" ng-click="sort('Gender')"><b>Gender</b></th>
+                <th style="cursor: pointer;" ng-click="sort('Email')"><b>Email</b></th>
+                <th style="cursor: pointer;" ng-click="sort('Mobile')"><b>Mobile</b></th>
+                <th style="cursor: pointer;" ng-click="sort('Address')"><b>Address</b></th>
+                <th style="cursor: pointer; width: 100px;" ng-click="sort('JoiningDate')"><b>Joining Date</b></th>
+                <th style="cursor: pointer;" ng-click="sort('Department')"><b>Department</b></th>
+                <th style="cursor: pointer;" ng-click="sort('Designation')"><b>Designation</b></th>
+            </tr>
+            <tr dir-paginate="employee in employees|orderBy:sortKey:reverse|filter:search|itemsPerPage:10" ng-model="search">
+
+                <td>{{employee.Id}}
+                </td>
+                <td>{{employee.name}}
+                </td>
+                <td style="width: 100px;">{{employee.DOB |date:'dd-MM-yyyy'}}
+                </td>
+                <td>{{employee.Gender}}
+                </td>
+                <td>{{employee.Email}}
+                </td>
+                <td>{{employee.Mobile}}
+                </td>
+                <td>{{employee.Address}}
+                </td>
+                <td style="width: 100px;">{{employee.JoiningDate}}
+                </td>
+                <td>{{employee.DepartmentName}}
+                </td>
+                <td>{{employee.DesignationName}}
+                </td>
+            </tr>
+            <b style="color: #5bc0de;">Total Records </b>: <b>{{employees.length}}  </b>
+        </table>
+
+        <dir-pagination-controls
+            max-size="10"
+            direction-links="true"
+            boundary-links="true">            
+    </dir-pagination-controls>
+
+    </div>
+</body>
+</html>
